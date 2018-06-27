@@ -1,0 +1,67 @@
+---
+ - hosts: hi
+   tasks:
+    - name: conf
+      shell: "/usr/bin/lscpu | /bin/grep -i 'model name'| /usr/bin/awk -F : '{print $2}'"
+
+
+      register: x
+   
+
+    - name : showing output
+      debug: msg="{{x}}"
+
+    - name: conf
+      shell: "/usr/bin/lscpu | /bin/grep -i 'architecture'| /usr/bin/awk -F : '{print $2}'"
+
+
+      register: x
+   
+
+    - name : showing output
+      debug: msg="{{ x.stdout }}"
+
+    - name: conf
+      shell: "/usr/bin/lsblk |  /usr/bin/awk '{print $4}' | tail -1"
+
+
+      register: x
+   
+
+    - name : showing output
+      debug: msg="{{x}}"
+
+    - name: conf
+      shell: "/usr/bin/free -lm | /usr/bin/awk  '{print $2}'| head -2 | tail -1"
+
+
+      register: x
+   
+
+    - name : showing output
+      debug: msg="{{x}}"
+
+    - name: conf
+      shell: "/usr/bin/lscpu | /bin/grep -i 'CPU op-mode' | /usr/bin/awk -F : '{print $2}'"
+      
+      register: x
+   
+
+    - name : showing output
+      debug: msg="{{x}}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
